@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
+import "express-async-errors";
 
 const app = express();
 
@@ -8,7 +9,7 @@ const app = express();
 import connectDB from "./db/connect.js";
 
 // routets
-import authRouter from "./routes/authRoutes";
+import authRouter from "./routes/authRoutes.js";
 
 // MiddleWare
 import errorHandlerMiddleware from "./middleware/error-handler.js";
