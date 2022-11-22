@@ -1,17 +1,26 @@
 import express from "express";
-import connectDB from "./db/connect.js";
 import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
 
+// db
+import connectDB from "./db/connect.js";
+
+// routets
+import authRouter from "./routes/authRoutes";
+
 // MiddleWare
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 import notFoundMiddleware from "./middleware/not-found.js";
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("BizStats");
 });
+
+app.use("/api/vi/auth", authRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
